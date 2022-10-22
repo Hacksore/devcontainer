@@ -18,10 +18,13 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 # load brew
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-# install ansible and stow for configuration
-brew install stow
+# brew deps
+brew install stow zsh
 
-# install the files with stow
+# install ohmyzsh
+yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# link all dot files
 stow .
 
 # done
