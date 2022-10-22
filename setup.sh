@@ -3,6 +3,9 @@
 # system update
 apt update
 
+# create user for later
+useradd -m Hacksore
+
 # native deps for brew
 apt install -y curl git
 
@@ -10,19 +13,13 @@ apt install -y curl git
 git clone https://github.com/Hacksore/dotfiles.git "$HOME/dotfiles"
 
 # install homebrew
-git clone https://github.com/Homebrew/brew "$HOME/homebrew"
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-cd $HOME
-eval "$(homebrew/bin/brew shellenv)"
-
-brew update --force --quiet
-chmod -R go-w "$(brew --prefix)/share/zsh"
+# load brew
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # install ansible and stow for configuration
 brew install stow
-
-# use brew bundle
-brew bundle --file "$HOME/dotfiles/Brewfile"
 
 # install the files with stow
 stow .
