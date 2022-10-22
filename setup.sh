@@ -1,29 +1,41 @@
 #!/bin/bash
+
+# system update
 apt update
+
+# native deps for brew
 apt install -y curl git
 
-# install brew
-yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+# clone the repo with dotfiles if not exists
+if [ -d "$HOME/dotfiles" ]; then
+  git clone https://github.com/Hacksore/dotfiles.git "$HOME/dotfiles"
+fi
 
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> "$HOME/.zshrc"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [ -d "$HOME/homebrew" ]; then
+  git clone https://github.com/Homebrew/brew "$HOME/homebrew"
 
-brew install curl
-brew install git
-brew install nvm
-brew install zsh
+  cd $HOME
+  eval "$(homebrew/bin/brew shellenv)"
 
-# setup nvm in zshrc
-echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.zshrc"
-echo '\n' >> "$HOME/.zshrc"
-echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
+  brew update --force --quiet
+  chmod -R go-w "$(brew --prefix)/share/zsh"
 
-# setup and install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  # install ansible and stow for configuration
+  brew install ansible stow
 
-# load nvm
-[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
+  # setup the brew mod
+  ansible-galaxy collection install community.general
 
-# install/use 16
-nvm install 16
-nvm alias default 16
+  # brew just installed let's run our ansible stuff
+  bash "$HOME/dotfiles/ansible/run.sh"
+
+  # use brew bundle
+  brew bundle --file "$HOME/dotfiles/Brewfile"
+
+fi
+
+# install the files with stow
+stow .
+
+# done
+echo "All config files have been linked..."
