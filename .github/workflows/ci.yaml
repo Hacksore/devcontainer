@@ -23,5 +23,6 @@ jobs:
         with:
           context: .
           file: ./Dockerfile 
+          build-args: --progress=plain
           push: true
           tags: ghcr.io/hacksore/devcontainer:latest
