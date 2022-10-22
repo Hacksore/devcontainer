@@ -5,8 +5,8 @@ on:
     branches: [master]
 
   # nightly to have a good baseline
-  schedule:
-    - 0 0 * * *
+  # schedule:
+  #   - 0 0 * * *
 
 jobs:
   build:
