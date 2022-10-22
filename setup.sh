@@ -24,7 +24,11 @@ brew install stow zsh
 # install ohmyzsh
 yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# remove existing one
+rm $HOME/.zshrc
+
 # link all dot files
+cd $HOME/dotfiles
 stow .
 
 # done

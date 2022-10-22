@@ -4,6 +4,10 @@ on:
   push:
     branches: [master]
 
+  # nightly to have a good baseline
+  schedule:
+    - 0 0 * * *
+
 jobs:
   build:
     runs-on: ubuntu-latest
