@@ -44,5 +44,8 @@ stow .
 # install yarn
 npm i -g yarn
 
+# install java
+apt install default-jre
+
 # done
 echo "All config files have been linked..."
