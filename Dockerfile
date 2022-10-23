@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:bullseye
 
 WORKDIR /root
 
-COPY . .
+COPY setup.sh .
 
 USER root
 
