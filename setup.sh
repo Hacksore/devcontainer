@@ -34,5 +34,7 @@ rm $HOME/.zshrc
 cd $HOME/dotfiles
 stow .
 
+nvm install 16
+
 # done
 echo "All config files have been linked..."
