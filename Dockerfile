@@ -7,4 +7,4 @@ COPY . .
 USER root
 
 # run setup
-RUN bash /home/setup.sh
+RUN bash /root/setup.sh
