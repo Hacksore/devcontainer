@@ -41,7 +41,7 @@ nvm install 16
 cd $HOME/dotfiles
 stow .
 
-# install yarn with npm lmao
+# install yarn
 npm i -g yarn
 
 # done
