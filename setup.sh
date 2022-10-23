@@ -41,5 +41,8 @@ nvm install 16
 cd $HOME/dotfiles
 stow .
 
+# install yarn with npm lmao
+npm i -g yarn
+
 # done
 echo "All config files have been linked..."
