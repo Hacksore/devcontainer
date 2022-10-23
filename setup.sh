@@ -19,7 +19,7 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # brew deps
-brew install stow zsh fzf nvm zsh-syntax-highlighting zsh-completions thefuck diff-so-fancy
+brew install stow zsh fzf nvm zsh-syntax-highlighting zsh-autosuggestions zsh-completions thefuck diff-so-fancy
 
 # install ohmyzsh
 yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
