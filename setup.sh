@@ -47,5 +47,8 @@ npm i -g yarn
 # install java
 apt install default-jre -y
 
+# add firebase tools
+yarn global add firebase-tools
+
 # done
 echo "All config files have been linked..."
