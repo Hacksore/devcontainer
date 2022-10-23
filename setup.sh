@@ -19,10 +19,19 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # brew deps
-brew install stow zsh
+brew install stow zsh fzf
 
 # install ohmyzsh
 yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# install some other things
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# install highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+# install fzf
+yes | /home/linuxbrew/.linuxbrew/opt/fzf/install
 
 # remove existing one
 rm $HOME/.zshrc
